@@ -1,32 +1,41 @@
 import React, { Component } from "react";
-import CalculatorKey from "./CalculatorKey";
+import CalculatorDisplay from "./CalculatorDisplay";
 import styles from "../styles/calculator.module.css";
 
 class Calculator extends Component {
-  state = {
-    value: null,
-    displayValue: "0",
-    operator: null,
-    waitingForOperand: false
-  };
+  constructor(props) {
+    super(props);
 
-  clearAll = () => {
+    this.state = {
+      value: null,
+      displayValue: "0",
+      operator: null,
+      waitingForOperand: false
+    };
+  }
+
+  clearAll() {
     this.setState({
       value: null,
       displayValue: "0",
       operator: null,
       waitingForOperand: false
     });
-  };
+  }
 
-  cleanDisplay = () => {
+  cleanDisplay() {
     this.setState({
       displayValue: "0"
     });
-  };
+  }
 
   render() {
-    return <div className={styles.calculator}>Hello World!!!!</div>;
+    const { displayValue } = this.state;
+    return (
+      <div className={styles.calculator}>
+        <CalculatorDisplay value={displayValue} />
+      </div>
+    );
   }
 }
 
